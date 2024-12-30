@@ -41,14 +41,27 @@ document.getElementById("korupsiForm").addEventListener("submit", function (e) {
   hasilTable.innerHTML = "";
 
   // Menambahkan hasil ke tabel
+  // Fungsi untuk mengonversi angka ke satuan dalam bentuk tulisan
+  function formatSatuan(value) {
+    if (value >= 1_000_000_000_000) {
+      return (value / 1_000_000_000_000).toFixed(2) + " triliun";
+    } else if (value >= 1_000_000_000) {
+      return (value / 1_000_000_000).toFixed(2) + " miliar";
+    } else if (value >= 1_000_000) {
+      return (value / 1_000_000).toFixed(2) + " juta";
+    } else if (value >= 1_000) {
+      return (value / 1_000).toFixed(2) + " ribu";
+    } else {
+      return value.toFixed(2);
+    }
+  }
+
+  // Menambahkan hasil ke tabel
   for (const periode in hasil) {
     const row = `
       <tr>
         <td>${periode}</td>
-        <td>Rp ${hasil[periode].toLocaleString("id-ID", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}</td>
+        <td>Rp ${formatSatuan(hasil[periode])}</td>
       </tr>
     `;
     hasilTable.innerHTML += row;
