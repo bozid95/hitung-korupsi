@@ -45,7 +45,10 @@ document.getElementById("korupsiForm").addEventListener("submit", function (e) {
     const row = `
       <tr>
         <td>${periode}</td>
-        <td>Rp ${hasil[periode].toLocaleString()}</td>
+        <td>Rp ${hasil[periode].toLocaleString("id-ID", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}</td>
       </tr>
     `;
     hasilTable.innerHTML += row;
