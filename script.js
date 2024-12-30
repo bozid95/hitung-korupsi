@@ -52,7 +52,7 @@ document.getElementById("korupsiForm").addEventListener("submit", function (e) {
     } else if (value >= 1_000) {
       return (value / 1_000).toFixed(2) + " ribu";
     } else {
-      return value.toFixed(2);
+      return value.toFixed(2) + " perak";
     }
   }
 
